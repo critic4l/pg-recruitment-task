@@ -8,14 +8,14 @@ public class App {
         userInput.getDateFromFromInput();
         userInput.getDateToFromInput();
 
-        Http http = new Http();
+        ExchangeRateReciever exchangeRateReciever = new ExchangeRateReciever();
         try {
-            http.getData(userInput.getDateFrom(), userInput.getDateTo());
+            exchangeRateReciever.getData(userInput.getDateFrom(), userInput.getDateTo());
         } catch (IOException e) {
             System.out.println(e);
         }
 
-        ExchangeRatePrinter.printExchangeRates();
+        ExchangeRatePrinter.printExchangeRates(exchangeRateReciever.parseData());
 
     }
 }
