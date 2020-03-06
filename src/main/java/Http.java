@@ -13,7 +13,7 @@ public class Http {
                 .GET()
                 .build();
         try {
-            var response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+            HttpResponse response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
             System.out.println(response.body());
         } catch (InterruptedException e) {
             e.printStackTrace();
