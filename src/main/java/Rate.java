@@ -1,21 +1,19 @@
-import java.util.Date;
-
-public class Rates {
-    private Date date;
+public class Rate {
+    private String date;
     private float bid;
     private float ask;
 
-    public Rates(Date date, float bid, float ask) {
+    public Rate(String date, float bid, float ask) {
         this.date = date;
         this.bid = bid;
         this.ask = ask;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -33,5 +31,14 @@ public class Rates {
 
     public void setAsk(float ask) {
         this.ask = ask;
+    }
+
+    @Override
+    public String toString() {
+        return "Rate{" +
+                "date='" + date + '\'' +
+                ", bid=" + bid +
+                ", ask=" + ask +
+                '}';
     }
 }
