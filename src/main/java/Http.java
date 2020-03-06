@@ -7,8 +7,8 @@ import java.net.URL;
 
 public class Http {
 
-    public void getData() throws IOException {
-        URL url = new URL("http://api.nbp.pl/api/exchangerates/rates/c/usd/2012-01-01/2012-01-31/");
+    public void getData(String from, String to) throws IOException {
+        URL url = new URL("http://api.nbp.pl/api/exchangerates/rates/c/usd/" + from + "/" + to + "/");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         int responseCode = connection.getResponseCode();
