@@ -22,14 +22,14 @@ public class UserInput {
     }
 
     public String getDateFromInput() throws ParseException {
-        System.out.println("Prosze podac date w formacie yyyy-MM-dd: ");
+        System.out.println("Enter date in provided format yyyy-MM-dd: ");
         String inputDate = scanner.nextLine();
         Date date = sdf.parse(inputDate);
         return sdf.format(date);
     }
 
     public void getDateFromFromInput() {
-        System.out.println("Wprowadz date od ktorej chcesz otrzymac kursy USD");
+        System.out.println("Enter the date from which you want to receive USD exchange rates");
         try {
             dateFrom = getDateFromInput();
             checkDateAfterToday(sdf.parse(dateFrom));
@@ -40,7 +40,7 @@ public class UserInput {
     }
 
     public void getDateToFromInput() {
-        System.out.println("Wprowadz date do ktore chcesz otrzymac kursy USD");
+        System.out.println("Enter the date to which you want to receive USD exchange rates");
         try {
             dateTo = getDateFromInput();
             checkDateToLowerThanFrom();
@@ -53,13 +53,13 @@ public class UserInput {
     public void checkDateAfterToday(Date dateToCheck) throws IllegalDateException {
         Date today = new Date();
         if (dateToCheck.after(today)) {
-            throw new IllegalDateException("Wprowadzono date ktora jeszcze sie nie wydarzyla");
+            throw new IllegalDateException("Provided date did not happen yet, please insert valid one");
         }
     }
 
     public void checkDateToLowerThanFrom() throws IllegalDateException, ParseException {
         if (sdf.parse(dateFrom).after(sdf.parse(dateTo))) {
-            throw new IllegalDateException("Wprowadzono date wystepujaca przed data od kiedy mam szukac");
+            throw new IllegalDateException("Provided date happens before starting date, please insert valid one");
         }
     }
 }
