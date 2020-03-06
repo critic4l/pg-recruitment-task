@@ -21,16 +21,17 @@ public class UserInput {
         return dateTo;
     }
 
-    public String getDateFromInput() {
+    public String getDateFromInput() throws ParseException {
         System.out.println("Prosze podac date w formacie yyyy-MM-dd: ");
         String inputDate = scanner.nextLine();
-        return inputDate;
+        Date date = sdf.parse(inputDate);
+        return sdf.format(date);
     }
 
     public void getDateFromFromInput() {
         System.out.println("Wprowadz date od ktorej chcesz otrzymac kursy USD");
-        dateFrom = getDateFromInput();
         try {
+            dateFrom = getDateFromInput();
             checkDateAfterToday(sdf.parse(dateFrom));
         } catch (IllegalDateException | ParseException e) {
             e.printStackTrace();
@@ -40,10 +41,10 @@ public class UserInput {
 
     public void getDateToFromInput() {
         System.out.println("Wprowadz date do ktore chcesz otrzymac kursy USD");
-        dateTo = getDateFromInput();
         try {
+            dateTo = getDateFromInput();
             checkDateToLowerThanFrom();
-        } catch (IllegalDateException e) {
+        } catch (IllegalDateException | ParseException e) {
             e.printStackTrace();
             getDateToFromInput();
         }
