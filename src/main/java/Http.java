@@ -1,3 +1,5 @@
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -14,7 +16,9 @@ public class Http {
                 .build();
         try {
             HttpResponse response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-            System.out.println(response.body());
+            JSONObject jsonObject = new JSONObject(response.body().toString());
+            var test = jsonObject.getJSONArray("rates");
+            System.out.println(test.toString());
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
