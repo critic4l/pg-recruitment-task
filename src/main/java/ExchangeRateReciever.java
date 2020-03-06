@@ -31,14 +31,21 @@ public class ExchangeRateReciever {
 
     public List<Rate> parseData() {
         List<Rate> rates = new ArrayList<>();
+        int counter = 0;
         for (var rate : ratesFromJSON) {
             var rateJSON = new JSONObject(rate.toString());
+            var bid = rateJSON.getFloat("bid");
+            var ask = rateJSON.getFloat("ask");
+            var askChange = counter > 0 ? ask - rates.get(counter - 1).getAsk() : 0;
+            var bidChange = counter > 0 ? bid - rates.get(counter - 1).getBid() : 0;
             var myRate = new Rate(
                     rateJSON.getString("effectiveDate"),
-                    rateJSON.getFloat("bid"),
-                    rateJSON.getFloat("ask")
-            );
+                    bid,
+                    ask,
+                    askChange,
+                    bidChange);
             rates.add(myRate);
+            counter++;
         }
         return rates;
     }
