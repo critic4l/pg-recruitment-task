@@ -57,13 +57,9 @@ public class UserInput {
         }
     }
 
-    public void checkDateToLowerThanFrom() throws IllegalDateException {
-        try {
-            if (sdf.parse(dateFrom).after(sdf.parse(dateTo))) {
-                throw new IllegalDateException("Wprowadzono date wystepujaca przed data od kiedy mam szukac");
-            }
-        } catch (ParseException e) {
-            e.printStackTrace();
+    public void checkDateToLowerThanFrom() throws IllegalDateException, ParseException {
+        if (sdf.parse(dateFrom).after(sdf.parse(dateTo))) {
+            throw new IllegalDateException("Wprowadzono date wystepujaca przed data od kiedy mam szukac");
         }
     }
 }
