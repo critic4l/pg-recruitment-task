@@ -9,7 +9,7 @@ import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExchangeRateReciever {
+public class ExchangeRateReceiver {
 
     private JSONArray ratesFromJSON;
 

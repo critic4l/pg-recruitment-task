@@ -8,14 +8,14 @@ public class App {
         userInput.getDateFromFromInput();
         userInput.getDateToFromInput();
 
-        ExchangeRateReciever exchangeRateReciever = new ExchangeRateReciever();
+        ExchangeRateReceiver exchangeRateReceiver = new ExchangeRateReceiver();
         try {
-            exchangeRateReciever.getData(userInput.getDateFrom(), userInput.getDateTo());
+            exchangeRateReceiver.getData(userInput.getDateFrom(), userInput.getDateTo());
         } catch (IOException e) {
             System.out.println(e);
         }
 
-        ExchangeRatePrinter.printExchangeRates(exchangeRateReciever.parseData());
+        ExchangeRatePrinter.printExchangeRates(exchangeRateReceiver.parseData());
 
     }
 }
