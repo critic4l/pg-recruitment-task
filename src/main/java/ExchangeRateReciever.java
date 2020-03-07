@@ -21,8 +21,13 @@ public class ExchangeRateReciever {
                 .build();
         try {
             HttpResponse response = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
-            JSONObject jsonObject = new JSONObject(response.body().toString());
-            ratesFromJSON = jsonObject.getJSONArray("rates");
+            if(response.statusCode() == 200) {
+                JSONObject jsonObject = new JSONObject(response.body().toString());
+                ratesFromJSON = jsonObject.getJSONArray("rates");
+            } else {
+                System.out.println("Couldn't fetch data from server, please try again later");
+            }
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
