@@ -10,12 +10,11 @@ public class App {
 
         ExchangeRateReceiver exchangeRateReceiver = new ExchangeRateReceiver();
         try {
-            exchangeRateReceiver.getData(userInput.getDateFrom(), userInput.getDateTo());
+            if (exchangeRateReceiver.getData(userInput.getDateFrom(), userInput.getDateTo())) {
+                ExchangeRatePrinter.printExchangeRates(exchangeRateReceiver.parseData());
+            }
         } catch (IOException e) {
             System.out.println(e);
         }
-
-        ExchangeRatePrinter.printExchangeRates(exchangeRateReceiver.parseData());
-
     }
 }

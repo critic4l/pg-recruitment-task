@@ -13,7 +13,7 @@ public class ExchangeRateReceiver {
 
     private JSONArray ratesFromJSON;
 
-    public void getData(String from, String to) throws IOException {
+    public boolean getData(String from, String to) throws IOException {
         HttpClient httpClient = HttpClient.newHttpClient();
         HttpRequest httpRequest = HttpRequest.newBuilder()
                 .uri(URI.create(String.format("http://api.nbp.pl/api/exchangerates/rates/c/usd/%s/%s", from, to)))
@@ -24,6 +24,7 @@ public class ExchangeRateReceiver {
             if(response.statusCode() == 200) {
                 JSONObject jsonObject = new JSONObject(response.body().toString());
                 ratesFromJSON = jsonObject.getJSONArray("rates");
+                return true;
             } else {
                 System.out.println("Couldn't fetch data from server, please try again later");
             }
@@ -31,7 +32,7 @@ public class ExchangeRateReceiver {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
+        return false;
     }
 
     public List<Rate> parseData() {
